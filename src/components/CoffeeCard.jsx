@@ -30,9 +30,12 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
       .then((result) => {
         if (result.isConfirmed) {
           // delete in db
-          fetch(`http://localhost:3000/coffees/${_id}`, {
-            method: "DELETE",
-          })
+          fetch(
+            `https://coffee-store-server-five-nu.vercel.app/coffees/${_id}`,
+            {
+              method: "DELETE",
+            }
+          )
             .then((res) => res.json())
             .then((data) => {
               // console.log("after delete", data);
@@ -42,7 +45,9 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
                   text: "Your Coffee has been deleted.",
                   icon: "success",
                 });
-                const remainingCoffee = coffees.filter(cof => cof._id !== _id);
+                const remainingCoffee = coffees.filter(
+                  (cof) => cof._id !== _id
+                );
                 setCoffees(remainingCoffee);
               }
             });
